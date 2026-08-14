@@ -44,3 +44,12 @@ por `.gitignore`.
 ## Licencia
 
 Pendiente de definir.
+
+## Repositorios
+
+Este repo se mantiene en dos plataformas, con el mismo contenido en `main`:
+
+- **GitHub (canonico):** https://github.com/abelardodiaz/web26-101-ycloud-mcp
+- **GitLab (espejo):** https://gitlab.com/abelardodiaz/web26-101-ycloud-mcp
+
+Issues y pull requests, en GitHub.

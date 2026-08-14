@@ -42,7 +42,8 @@ stack:
     - API v2 de YCloud
 
 urls:
-  repository: ""   # pendiente: se llena al crear los remotes
+  repository: https://github.com/abelardodiaz/web26-101-ycloud-mcp
+  repository_mirror: https://gitlab.com/abelardodiaz/web26-101-ycloud-mcp
 
 related:
   - code: web26-851

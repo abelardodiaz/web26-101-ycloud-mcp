@@ -33,7 +33,64 @@ edites sus archivos.
 - **Sin emojis** en scripts bash y python: se corren desde PowerShell en Windows.
 - **Ruff obligatorio**: `[tool.ruff]` en `pyproject.toml` + `ruff>=0.8` en dev deps.
 - **PROJECT.yaml en cada commit**: `version`, `updated_at`, `updated_by: claude-101`.
-- **Dos remotes**: GitHub y GitLab, se pushea a ambos.
+
+## GitHub y GitLab
+
+Este repo vive en **los dos**, con la convencion de nombres de la flota:
+
+| Remote | Plataforma | URL |
+|---|---|---|
+| `github` | GitHub | `git@github.com:abelardodiaz/web26-101-ycloud-mcp.git` |
+| `origin` | GitLab | `git@gitlab.com:abelardodiaz/web26-101-ycloud-mcp.git` |
+
+**Ojo con `origin`:** en esta flota `origin` es **GitLab**, no GitHub. El 091 lo hizo al reves
+y por eso hay que decirlo. Verifica con `git remote -v` antes de asumir.
+
+### Push: siempre a los dos
+
+```bash
+git push github main && git push origin main
+```
+
+No es opcional. Un repo pusheado a uno solo se desincroniza en silencio y luego nadie sabe
+cual va adelante. Si uno de los dos falla, **no des el trabajo por subido**: arregla y repite.
+
+### Reparto de roles
+
+- **GitHub = cara publica.** Es la URL que se comparte, la que va en `PROJECT.yaml`, la que
+  se registra si el servidor se publica en el registry de MCP o en awesome-mcp-servers, y
+  donde llegarian issues y PRs de terceros.
+- **GitLab = espejo de respaldo.** Misma rama `main`, mismo contenido. Existe para que el
+  codigo no dependa de una sola cuenta.
+
+### Antes de cada push, en este repo mas que en ninguno
+
+Este proyecto toca WhatsApp real. Un push es irreversible: aunque borres el commit despues,
+el contenido ya salio. Revisa el diff **antes**, no despues:
+
+```bash
+git diff --cached
+```
+
+Nunca deben salir: la API key de YCloud, numeros de telefono reales, contenido de mensajes,
+`mensajes.jsonl`, logs, ni el hostname del tunel de 851. El `.gitignore` cubre los casos
+conocidos; el que se te ocurra a ti no lo cubre nadie.
+
+### Ramas y CI
+
+- Rama unica `main`. Si el proyecto crece a ramas de trabajo, se abre PR en **GitHub** y
+  GitLab sigue siendo espejo.
+- No hay CI configurado. Si se agrega, va en GitHub Actions; GitLab se queda sin pipeline
+  para no correr todo dos veces.
+
+### Herramientas
+
+`gh` y `glab` estan autenticados **en WSL**, no en Windows. Desde una sesion en Windows se
+usan con `wsl bash -lc "..."` en una sola capa — anidar mas se come la sustitucion de
+comandos (leccion conocida de la flota).
+
+Aviso: `glab auth status` puede reportar `Invalid token provided` con un token perfectamente
+valido. Antes de concluir que el acceso a GitLab esta roto, comprueba con `glab api user`.
 
 ## Comunicacion entre proyectos
 
