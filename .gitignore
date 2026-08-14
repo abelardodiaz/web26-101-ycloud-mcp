@@ -1,0 +1,24 @@
+# credenciales: NUNCA en el repo
+.env
+.env.*
+!.env.example
+*.token
+*credentials*.json
+
+# notas privadas locales (numero de WhatsApp real, API key, tunel)
+PRIVATE-NOTES.md
+
+# datos de mensajeria: nunca al repo publico
+mensajes.jsonl
+media/
+*.jsonl
+*.log
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
