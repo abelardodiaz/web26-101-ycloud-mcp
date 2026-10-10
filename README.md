@@ -43,7 +43,7 @@ por `.gitignore`.
 
 ## Licencia
 
-Pendiente de definir.
+MIT. Ver [LICENSE](LICENSE).
 
 ## Repositorios
 
